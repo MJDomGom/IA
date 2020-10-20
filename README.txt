@@ -1,0 +1,2 @@
+-Trabajos y diferentes proyectos realizados por el alumno Manuel Jesus Dominguez Gomez para la asignatura de Inteligencia Artificial
+del grado de la universidad Pablo de Olavide: Grado en informatica basados en sistemas de informacion.
