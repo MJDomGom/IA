@@ -1,18 +1,14 @@
-function [bestAtrib,bestTheta] = univariantEqnNormal (y,columnas,data,names,isTest);
+function [bestAtrib,bestTheta] = univariantEqnNormal (y,columnas,data,names,isTest, dataR, nSamples)
   
   errores = [1];  
   thetasTot = [];
   
   if(isTest == true)
-    nSamples = columnas(1) * 0.7;
-    dataR = data(randperm(size(data,1)),:);
     XTrain = dataR(1:round(nSamples),1:size(dataR,2));
     yTrain = XTrain(:,columnas(2));
     XTest = dataR(round(nSamples) + 1:end, 1:size(dataR,2));
     yTest = XTest(:,columnas(2));
-    %XTrain = [ones(length(XTrain),1),XTrain];
     XTrain(:,columnas(2)) = [];
-    %XTest = [ones(length(XTest),1),XTest];
     XTest(:,columnas(2)) = [];    
     predicts = ones(length(yTest),length(names)-1);
     
@@ -24,7 +20,7 @@ function [bestAtrib,bestTheta] = univariantEqnNormal (y,columnas,data,names,isTe
     XT = [ones(length(XT),1),XT];
     
     theta = zeros(2,1);
-    % Avegurar valor de theta usando la ecuacion normal
+    % Averigurar valor de theta usando la ecuacion normal
     theta = normalEqn(X,yTrain);
     [error,predict] = runPredictions(XT,theta,names{i},yTest);
     errores = [errores ; error];  
@@ -33,11 +29,13 @@ function [bestAtrib,bestTheta] = univariantEqnNormal (y,columnas,data,names,isTe
   endfor
     thetasTot = thetasTot';
     errores(1) = [];
-    fprintf("Ranking con todos las variables\n");
-    plotRanking(data,y,thetasTot,predicts,names,errores,length(names)-1,false)
-    fprintf("\n\nRanking con los mejores 5\n");
+    
+    fprintf("\nRanking con todos las variables\n");
+    plotRanking(data,y,thetasTot,predicts,names,errores,length(names)-1,false, dataR, nSamples);
+    display("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    fprintf("\nRanking con los mejores 5\n");
     cantidad = 5;
-    [bestAtrib,bestTheta] = plotRanking(data,y,thetasTot,predicts,names,errores,cantidad,true);
+    [bestAtrib,bestTheta] = plotRanking(data,y,thetasTot,predicts,names,errores,cantidad,true, dataR, nSamples);
     
   else
     
@@ -58,11 +56,12 @@ function [bestAtrib,bestTheta] = univariantEqnNormal (y,columnas,data,names,isTe
 endfor
     thetasTot = thetasTot';
     errores(1) = [];
-    fprintf("Ranking con todos las variables\n");
-    plotRanking(data,y,thetasTot,predicts,names,errores,length(names)-1,false)
-    fprintf("\n\nRanking con los mejores 5\n");
+    fprintf("\nRanking con todos las variables\n");
+    plotRanking(data,y,thetasTot,predicts,names,errores,length(names)-1,false, dataR, nSamples);
+    display("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+    fprintf("\nRanking con los mejores 5\n");
     cantidad = 5;
-    plotRanking(data,y,thetasTot,predicts,names,errores,cantidad,true)
+    plotRanking(data,y,thetasTot,predicts,names,errores,cantidad,true, dataR, nSamples);
 
   endif
     

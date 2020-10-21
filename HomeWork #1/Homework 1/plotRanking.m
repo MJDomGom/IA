@@ -1,15 +1,13 @@
-function [bestAtrib,bestTheta] = plotRanking (X,y,theta,predictions,names,errores,cant,isTest);
+function [bestAtrib,bestTheta] = plotRanking (X,y,theta,predictions,names,errores,cant,isTest, dataR, nSamples);
     X(:,length(names)) = [];
     mejoresX = [];
    for i = 1 : cant
      
-     %PONER COMENTARIO CONSOLA COMANDOS NO MUESTRA TODO
-     
       [M,index] = min(errores);
-      fprintf("Datos para la variable %s\n\n",names{index});
+      fprintf("%s\n\n",names{index});
       mejoresX = [X(:,index) mejoresX];
       
-      %Dibujar recta de regresion
+      
       if(i == 1)      
       bestAtrib = index;
       bestTheta =  [theta(i,1) theta(i,2)];     
@@ -28,10 +26,13 @@ function [bestAtrib,bestTheta] = plotRanking (X,y,theta,predictions,names,errore
    names = ones(1,cant);
    mejoresX = [mejoresX y];
    columnas = size(mejoresX);
-   fprintf("\n\nRegresion lineal multivariable utilizando las mejores 5 variables del ranking donde train = test\n\n");
-   multivariantEqnNormal(y,columnas,mejoresX,names,false);
-   fprintf("\n\nRegresion lineal multivariable utilizando las mejores 5 variables del ranking donde 70train 30test\n\n");
-   multivariantEqnNormal(y,columnas,mejoresX,names,isTest);
+   dataR = mejoresX;
+   display("\n-------------------------------------------------------\n");
+   fprintf("\nMULTIVARIABLE 5 MEJORES CON EL CONJUNTO DE DATOS COMPLETO\n");
+   multivariantEqnNormal(y,columnas,mejoresX,names,false,dataR,nSamples);
+   fprintf("\nMULTIVARIABLE 5 MEJORES CON 70-30\n");
+   multivariantEqnNormal(y,columnas,mejoresX,names,isTest,dataR, nSamples);
+   display("\n-------------------------------------------------------\n");
    endif
   
 endfunction

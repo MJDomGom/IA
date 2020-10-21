@@ -1,8 +1,6 @@
-function multivariantEqnNormal(y,columnas,data,names,isTest)
+function multivariantEqnNormal(y,columnas,data,names,isTest, dataR, nSamples)
   
    if(isTest == true)
-    nSamples = columnas(1) * 0.7;
-    dataR = data(randperm(size(data,1)),:);
     X = dataR(1:round(nSamples),1:size(dataR,2));
     y = X(:,columnas(2));
     XTest = dataR(round(nSamples) + 1:end, 1:size(dataR,2));
@@ -27,8 +25,6 @@ else
   predictions = X * theta;
 endif  
 
-fprintf("Vector de theta: ");
-theta'
 
 if (isTest == true)
   error = sum(abs(yTest .- predictionsT)/length(XTest));
