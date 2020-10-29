@@ -1,7 +1,7 @@
-function [p sumaP] = predict (X, theta)
+function p = predict (X, theta)
   
   h = X*theta;
   p = round(sigmoid(h));
-  sumaP = sum(p);
+##  sumaP = sum(p);
 
 endfunction
