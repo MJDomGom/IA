@@ -1,4 +1,4 @@
-function tasaAcierto = calculateSucces (p, y)
+function tasaAcierto = calculateSuccess (p, y)
   
   Paciertos = 0;
   Pfallos = 0;
