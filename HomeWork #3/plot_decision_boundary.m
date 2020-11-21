@@ -1,4 +1,4 @@
-function plot_decision_boundary(Theta1,Theta2, X, y)
+function plot_decision_boundary(Theta1,Theta2, X, y, i)
     % Set min and max values and give it some padding
     x_min = min(min(X(1, :)),-0.6);
     x_max = min(max(X(1, :)),0.3);
@@ -17,7 +17,7 @@ function plot_decision_boundary(Theta1,Theta2, X, y)
     Z = reshape(Z,size(X1));
     
     % Plot the contour and examples
-    figure(2); % open a new figure window
+    figure(i); % open a new figure window
     contour(X1,Y1,Z,'LineColor','b');
     hold on;
     ylabel('x2');
