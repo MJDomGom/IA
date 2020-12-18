@@ -9,7 +9,7 @@ clear ; close all; clc
 input_layer_size  = 2;    % Número de atributos
 hidden_layer_size = 1;    % Número de neuronas en la capa oculta:
                           % 1,2,3,4,5,10
-iterations = 50;         % Iteraciones para el descenso del gradiente
+iterations = 50;          % Iteraciones para el descenso del gradiente
 options = optimset("GradObj", 'on', "MaxIter", iterations);
 
 display("\n***********CARGA Y VISUALIZACIÓN***********\n");

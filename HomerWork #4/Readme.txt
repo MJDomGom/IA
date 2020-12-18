@@ -1,0 +1,1 @@
+Trabajo realizado por Manuel Jesus Dominguez Gomez. El codigo se debe ejecutar con la herramienta AIMA
